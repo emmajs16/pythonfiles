@@ -1,21 +1,30 @@
 ## Emma Stoverink
 ## Septmeber 25, 2018
-
+import random
 ## CONSTANTS
+random.seed("We love Chick-fil-A!")
+order_number = 40000 + random.randint(1, 9999)
+
 ## BREAKFAST ITEMS
     # biscuit
+BREAKFAST_ONE_NUMBER = 1
 BREAKFAST_ONE_NAME = "Chick-fil-A Chicken Biscuit"
 BREAKFAST_ONE_PRICE = 3.49
+# BREAKFAST1 = "+\t1. {}{:>15}\t+".format(BREAKFAST_ONE_NAME,BREAKFAST_ONE_PRICE)
     # bagel
+BREAKFAST_TWO_NUMBER = 2
 BREAKFAST_TWO_NAME = "Chicken, Egg & Cheese Bagel"
 BREAKFAST_TWO_PRICE = 3.69
     # burrito
+BREAKFAST_THREE_NUMBER = 3
 BREAKFAST_THREE_NAME = "Hash Brown Scramble Burrito"
 BREAKFAST_THREE_PRICE = 3.79
     # egg white grill
+BREAKFAST_FOUR_NUMBER = 4
 BREAKFAST_FOUR_NAME = "Egg White Grill"
 BREAKFAST_FOUR_PRICE = 3.65
     # hash browns
+BREAKFAST_FIVE_NUMBER = 5
 BREAKFAST_FIVE_NAME = "Hash Browns"
 BREAKFAST_FIVE_PRICE = 1.09
 ## LUNCH AND DINNER ITEMS
@@ -34,6 +43,7 @@ LUNCH_FOUR_PRICE = 1.85
     # Milkshake
 LUNCH_FIVE_NAME = "Milkshake"
 LUNCH_FIVE_PRICE = 2.99
+
 
 # OPENING WELCOME MENU
 print("------------------------------------------------------------")
@@ -55,6 +65,7 @@ if welcome_choice == 1:
     print("\tEnter \"Dinner\" to place a dinner order.")
     meal_choice = str(input("Enter your choice: ")).lower()
     # if the user wants to place a breakfast order
+
     if meal_choice == "breakfast":
         print("+---------------------> Breakfast Menu <--------------------+")
         print(" 1. {:<28}{:>28}".format(BREAKFAST_ONE_NAME,BREAKFAST_ONE_PRICE))
@@ -64,6 +75,7 @@ if welcome_choice == 1:
         print(" 5. {:<28}{:>28}".format(BREAKFAST_FIVE_NAME,BREAKFAST_FIVE_PRICE))
         print("------------------------------------------------------------\n")
     # if the user wants to place a lunch or dinner order
+
     elif meal_choice == "lunch" or meal_choice == "dinner":
         print("+---------------------> {} Menu <---------------------+".format(meal_choice.capitalize()))
         print(" 1. {:<28}{:>28}".format(LUNCH_ONE_NAME,LUNCH_ONE_PRICE))
@@ -74,16 +86,153 @@ if welcome_choice == 1:
         print("------------------------------------------------------------\n")
     else:
         print("\nInvalid meal selection given. Goodbye.")
+
     # Get the number of items they want and the number of each item they want
     meal_items = int(input("How many items do you want to order? (Enter 1, 2, or 3): "))
-    if meal_items != 1 or meal_items != 2 or meal_items != 3:
+    if meal_items != 1 and meal_items != 2 and meal_items != 3:
         print("Invalid item selection. Goodbye.")
-        exit()
-    meal_choice1 = int(input("\tEnter the *number* of the 1st menu item you want: "))
-    if meal_items >= 2:
-        meal_choice2 = int(input("\tEnter the *number* of the 2nd menu item you want: "))
-    if meal_items == 3:
-        meal_choice3 = int(input("\tEnter the *number* of the 3rd menu item you want: "))
+    else:
+        meal_choice1 = 0
+        meal_choice2 = 0
+        meal_choice3 = 0
+        if meal_items >= 1:
+            meal_choice1 = int(input("\tEnter the *number* of the 1st menu item you want: "))
+        if meal_items >= 2:
+            meal_choice2 = int(input("\tEnter the *number* of the 2nd menu item you want: "))
+        if meal_items == 3:
+            meal_choice3 = int(input("\tEnter the *number* of the 3rd menu item you want: "))
+
+    # Florida Southern discount program
+    print("Florida Southern College Discount Program:")
+    print("\t Enter \"s\" for Student or \"f\" for Faculty/Staff.")
+    discount_type = str(input("Enter your choice: ")).lower()
+    if discount_type == "s":
+        discount = 0.4
+    elif discount_type == "f":
+        discount = 0.3
+    # RECEIPT
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print("+{:^53}+".format("Dinner: Order Number {}").format(order_number))
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    subtotal = 0.0
+    if meal_choice == "breakfast":
+        # meal choice 1
+        if meal_choice1 == 1:
+            print("+\t1. {}{:>15}\t +".format(BREAKFAST_ONE_NAME,BREAKFAST_ONE_PRICE))
+            subtotal += BREAKFAST_ONE_PRICE
+        elif meal_choice1 == 2:
+            print("+\t1. {}{:>15}\t +".format(BREAKFAST_TWO_NAME,BREAKFAST_TWO_PRICE))
+            subtotal += BREAKFAST_TWO_PRICE
+        elif meal_choice1 == 3:
+            print("+\t1. {}{:>15}\t +".format(BREAKFAST_THREE_NAME,BREAKFAST_THREE_PRICE))
+            subtotal += BREAKFAST_THREE_PRICE
+        elif meal_choice1 == 4:
+            print("+\t1. {}{:>15}\t +".format(BREAKFAST_FOUR_NAME,BREAKFAST_FOUR_PRICE))
+            subtotal += BREAKFAST_FOUR_PRICE
+        elif meal_choice1 == 5:
+            print("+\t1. {}{:>15}\t +".format(BREAKFAST_FIVE_NAME,BREAKFAST_FIVE_PRICE))
+            subtotal += BREAKFAST_FIVE_PRICE
+        # meal choice 2
+        if meal_choice2 == 1:
+            print("+\t2. {}{:>15}\t +".format(BREAKFAST_ONE_NAME,BREAKFAST_ONE_PRICE))
+            subtotal += BREAKFAST_ONE_PRICE
+        elif meal_choice2 == 2:
+            print("+\t2. {}{:>15}\t +".format(BREAKFAST_TWO_NAME,BREAKFAST_TWO_PRICE))
+            subtotal += BREAKFAST_TWO_PRICE
+        elif meal_choice2 == 3:
+            print("+\t2. {}{:>15}\t +".format(BREAKFAST_THREE_NAME,BREAKFAST_THREE_PRICE))
+            subtotal += BREAKFAST_THREE_PRICE
+        elif meal_choice2 == 4:
+            print("+\t2. {}{:>15}\t +".format(BREAKFAST_FOUR_NAME,BREAKFAST_FOUR_PRICE))
+            subtotal += BREAKFAST_FOUR_PRICE
+        elif meal_choice2 == 5:
+            print("+\t2. {}{:>15}\t +".format(BREAKFAST_FIVE_NAME,BREAKFAST_FIVE_PRICE))
+            subtotal += BREAKFAST_FIVE_PRICE
+        elif meal_choice2 == 0:
+            pass
+        # meal choice 3
+        if meal_choice3 == 1:
+            print("+\t3. {}{:>15}\t +".format(BREAKFAST_ONE_NAME,BREAKFAST_ONE_PRICE))
+            subtotal += BREAKFAST_ONE_PRICE
+        elif meal_choice3 == 2:
+            print("+\t3. {}{:>15}\t +".format(BREAKFAST_TWO_NAME,BREAKFAST_TWO_PRICE))
+            subtotal += BREAKFAST_TWO_PRICE
+        elif meal_choice3 == 3:
+            print("+\t3. {}{:>15}\t +".format(BREAKFAST_THREE_NAME,BREAKFAST_THREE_PRICE))
+            subtotal += BREAKFAST_THREE_PRICE
+        elif meal_choice3 == 4:
+            print("+\t3. {}{:>15}\t +".format(BREAKFAST_FOUR_NAME,BREAKFAST_FOUR_PRICE))
+            subtotal += BREAKFAST_FOUR_PRICE
+        elif meal_choice3 == 5:
+            print("+\t3. {}{:>15}\t +".format(BREAKFAST_FIVE_NAME,BREAKFAST_FIVE_PRICE))
+            subtotal += BREAKFAST_FIVE_PRICE
+        elif meal_choice2 == 0:
+            pass
+    else:
+        # meal choice 1
+        if meal_choice1 == 1:
+            print("+\t1. {}{:>15}\t +".format(LUNCH_ONE_NAME,LUNCH_ONE_PRICE))
+            subtotal += LUNCH_ONE_PRICE
+        elif meal_choice1 == 2:
+            print("+\t1. {}{:>15}\t +".format(LUNCH_TWO_NAME,LUNCH_TWO_PRICE))
+            subtotal += LUNCH_TWO_PRICE
+        elif meal_choice1 == 3:
+            print("+\t1. {}{:>15}\t +".format(LUNCH_THREE_NAME,LUNCH_THREE_PRICE))
+            subtotal += LUNCH_THREE_PRICE
+        elif meal_choice1 == 4:
+            print("+\t1. {}{:>15}\t +".format(LUNCH_FOUR_NAME,LUNCH_FOUR_PRICE))
+            subtotal += LUNCH_FOUR_PRICE
+        elif meal_choice1 == 5:
+            print("+\t1. {}{:>15}\t +".format(LUNCH_FIVE_NAME,LUNCH_FIVE_PRICE))
+            subtotal += LUNCH_FIVE_PRICE
+        # meal choice 2
+        if meal_choice2 == 1:
+            print("+\t2. {}{:>15}\t +".format(LUNCH_ONE_NAME,LUNCH_ONE_PRICE))
+            subtotal += LUNCH_ONE_PRICE
+        elif meal_choice2 == 2:
+            print("+\t2. {}{:>15}\t +".format(LUNCH_TWO_NAME,LUNCH_TWO_PRICE))
+            subtotal += LUNCH_TWO_PRICE
+        elif meal_choice2 == 3:
+            print("+\t2. {}{:>15}\t +".format(LUNCH_THREE_NAME,LUNCH_THREE_PRICE))
+            subtotal += LUNCH_THREE_PRICE
+        elif meal_choice2 == 4:
+            print("+\t2. {}{:>15}\t +".format(LUNCH_FOUR_NAME,LUNCH_FOUR_PRICE))
+            subtotal += LUNCH_FOUR_PRICE
+        elif meal_choice2 == 5:
+            print("+\t2. {}{:>15}\t +".format(LUNCH_FIVE_NAME,LUNCH_FIVE_PRICE))
+            subtotal += LUNCH_FIVE_PRICE
+        elif meal_choice2 == 0:
+            pass
+        # meal choice 3
+        if meal_choice3 == 1:
+            print("+\t3. {}{:>15}\t +".format(LUNCH_ONE_NAME,LUNCH_ONE_PRICE))
+            subtotal += LUNCH_ONE_PRICE
+        elif meal_choice3 == 2:
+            print("+\t3. {}{:>15}\t +".format(LUNCH_TWO_NAME,LUNCH_TWO_PRICE))
+            subtotal += LUNCH_TWO_PRICE
+        elif meal_choice3 == 3:
+            print("+\t3. {}{:>15}\t +".format(LUNCH_THREE_NAME,LUNCH_THREE_PRICE))
+            subtotal += LUNCH_THREE_PRICE
+        elif meal_choice3 == 4:
+            print("+\t3. {}{:>15}\t +".format(LUNCH_FOUR_NAME,LUNCH_FOUR_PRICE))
+            subtotal += LUNCH_FOUR_PRICE
+        elif meal_choice3 == 5:
+            print("+\t3. {}{:>15}\t +".format(LUNCH_FIVE_NAME,LUNCH_FIVE_PRICE))
+            subtotal += LUNCH_FIVE_PRICE
+        elif meal_choice2 == 0:
+            pass
+        # total cost
+    discount_amount = subtotal * discount
+    print("+\t--------------------------------------------\t+")
+    print("+\tSubtotal:{:>15}\t +".format("$ {}".format(subtotal)))
+    print("+\tStudent Discount:{:>15} \t +".format("$ {}".format(discount_amount)))
+    print("+\t--------------------------------------------\t+")
+    print("+\tTotal:{:>15} \t +".format("$ {}".format(subtotal-discount_amount)))
+    print("+\t--------------------------------------------\t+")
+    print("+                                                +")
+    print("+{:^35}+".format("Your order will be ready in {} minutes.".format(meal_items * 2)))
+    print("+{:^35}+".format("Thank you for your order!"))
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
 # If the user wants to view nutritional info
 elif welcome_choice == 2:
